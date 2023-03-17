@@ -11,6 +11,7 @@ export default function Post(props) {
                 (props.hiddenLink) ?
                 <></> :
                 <Link to={ `/cars/${props.post.id}` }>Read More</Link>
+                
             }
         </div>
     )
