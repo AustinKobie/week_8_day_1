@@ -1,18 +1,16 @@
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
 export default function Post(props) {
-    return (
-        <div className="post">
-            <p>{props.post.name}</p>
-            <p>{props.post.year}</p>
-            <p>{props.post.owner}</p>
-            <p>{props.post.id}</p>
-            {
-                (props.hiddenLink) ?
-                <></> :
-                <Link to={ `/cars/${props.post.id}` }>Read More</Link>
-                
-            }
-        </div>
-    )
+  return (
+    <div className="post">
+      <p>{props.post.body}</p>
+      <p>{props.post.dateCreated?.toDate().toString()}</p>
+      <p>Posted By: {props.post.userName}</p>
+      {props.hideLink ? (
+        <></>
+      ) : (
+        <Link to={`/post/${props.post.id}`}>Read More</Link>
+      )}
+    </div>
+  );
 }

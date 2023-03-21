@@ -1,12 +1,15 @@
 import logo from "./logo.svg";
 import "./App.css";
-import { useState } from "react";
+import { useContext } from "react";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Home from "./views/Home";
 import Inventory from "./views/Inventory";
 import Profile from "./views/Profile";
+import PostSingle from "./views/PostSingle";
+import { AuthContext } from "./contexts/AuthProvider";
 
 function App() {
+  const { login, user, logout } = useContext(AuthContext);
   return (
     <BrowserRouter>
       <nav>
@@ -22,6 +25,18 @@ function App() {
           </li>
         </ul>
       </nav>
+      <div>
+        {user.loggedIn ? (
+          <>
+            <button onClick={logout}>Log Out</button>
+            <p>Current User: {user.displayName}</p>
+          </>
+        ) : (
+          <>
+            <button onClick={login}>Log In</button>
+          </>
+        )}
+      </div>
       <Routes>
         <Route path="/inventory" element={<Inventory />} />
         <Route path="/profile" element={<Profile />} />
